@@ -1,0 +1,28 @@
+import React from 'react'
+import BookCard from './BookCard/BookCard'
+import { Container,Row } from 'react-bootstrap'
+const ListBook = (props) => {
+    return (
+        
+        <Container fluid className='m-3 mt-5'>
+            <Row className=''>
+                {
+                    props.books.map((book, i) =>{
+                        return <BookCard 
+                                    className='row'
+                                    key={i}
+                                    image={book.volumeInfo.imageLinks.thumbnail}
+                                    categories={book.volumeInfo.categories}
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors}
+                                    date={book.volumeInfo.publishedDate}
+                                />
+                })
+            }
+            </Row>
+        </Container>
+        
+    )
+}
+
+export default ListBook
