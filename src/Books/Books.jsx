@@ -9,6 +9,8 @@ export default class Books extends Component { //
         this.state = {
             books: [],
             searchField: '',
+            sort: 'relevance',
+            catygory: 'all',
         }
     }
 
@@ -17,6 +19,7 @@ export default class Books extends Component { //
         request
             .get('https://www.googleapis.com/books/v1/volumes')
             .query({ q: this.state.searchField })
+            .query({ orderBy: this.state.sort})
             .then((data) => {
                 this.setState({ books: [...data.body.items]})
             })
@@ -26,10 +29,16 @@ export default class Books extends Component { //
         this.setState({ searchField: e.target.value })
     }
 
+    handleSort = (e) =>{
+        this.setState({ sort: e.target.value})     
+    }
+
+    
+
     render() {
         return (
             <div>
-                <Search searchBook={this.searchBook} handleSearch={this.handleSearch}/>
+                <Search searchBook={this.searchBook} handleSearch={this.handleSearch} handleSort={this.handleSort}/>
                 <ListBook books={this.state.books}/>
             </div>
         )

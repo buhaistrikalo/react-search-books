@@ -1,9 +1,10 @@
 import React from 'react'
-import './Search.css'
 import { Form, Button, FormControl } from 'react-bootstrap'
+
 const Search = (props) => {
     return (
-        <Form className="d-flex col-md-5 mx-auto mt-3 mr-3 ml-3" onSubmit={props.searchBook}>
+        <div>
+            <Form className="d-flex col-md-7 mx-auto mt-3 mr-3 ml-3" onSubmit={props.searchBook}>
             
             <FormControl
                 type="search"
@@ -14,14 +15,25 @@ const Search = (props) => {
             />
            
             <Button type="submit" variant="outline-success">Search</Button>
-        </Form>
-        // <div className="search-area">
-        //     <form onSubmit={props.searchBook} action="">
-        //         <input type="text" onChange={props.handleSearch}/>
-        //         <button type='submit'>Search</button>
-        //     </form>
+
+            <select defaultValue='Relevance' onChange={props.handleSort}>
+                <option value="Relevance">Relevance</option>
+                <option value="Newest">Newest</option>
+            </select>
+            <select defaultValue='All' onChange={props.handleSort}>
+                <option value="all">All</option>
+                <option value="art">Art</option>
+                <option value="biography">Biography</option>
+                <option value="computers">Computers</option>
+                <option value="history">History</option>
+                <option value="medical">Medical</option>
+                <option value="poetry">Poetry</option>
+            </select>
+            </Form>
             
-        // </div>
+        </div>
+        //all, art, biography, computers, history, medical, poetry
+
     )
 }
 
